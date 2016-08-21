@@ -9,22 +9,23 @@ import javax.persistence.Table;
 @Table(name="user")
 public class User {
 
-	private int userId;
-	private String userName;
+	
+	private int id;
+	private String name;
 	
 	@Id
 	@GeneratedValue
-	public int getUserId() {
-		return userId;
+	public int getId() {
+		return id;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

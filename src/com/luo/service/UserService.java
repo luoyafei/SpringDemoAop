@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.luo.bean.User;
 import com.luo.dao.UserDao;
 
+
 @Component(value="us")
 public class UserService {
 

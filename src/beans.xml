@@ -34,14 +34,15 @@
 		    <props>
 		        <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
 		        <prop key="show_sql">true</prop>
+		        <prop key="format_sql">true</prop>
 		    </props>
 		</property>
 	  </bean>
-
+	
 	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 	  <property name="sessionFactory" ref="sessionFactory" />
 	</bean>
- 	<tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>
+	<tx:annotation-driven transaction-manager="txManager"/>
 
      <aop:config>
      	<aop:pointcut expression="execution(public void com.luo.dao.daoImpl.UserDaoImpl.save(com.luo.bean.User))" id="pc"/>

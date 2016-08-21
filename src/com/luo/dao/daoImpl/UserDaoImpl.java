@@ -36,14 +36,15 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void save(User user) {
 		
-		Session session = sessionFactory.openSession();
+System.out.println(sessionFactory.isClosed());
 		
-		user.setUserName("王麻子3");
+		Session session = sessionFactory.getCurrentSession();
+	
+		user.setName("王麻子5");
 		session.save(user);
 
-		new HibernateException("error");
-		/*new RuntimeException();*/
-		System.out.println("I am saved!");
+		throw new HibernateException("error");
+		//System.out.println("I am saved!");
 	}
 
 }
