@@ -1,5 +1,3 @@
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -28,7 +26,7 @@ public class TestSpring {
 	public void isnull() {
 	}
 	
-	@Before
+	//@Before
 	public void testReadOnlyBefore() {
 		System.out.println("++++++++++++++++++" + System.currentTimeMillis() + "++++++++++++++++++");
 	}
@@ -40,7 +38,7 @@ public class TestSpring {
 		us.getUserAll();
 	}
 	
-	@After
+	//@After
 	public void testReadOnlyAfter() {
 		System.out.println("++++++++++++++++++" + System.currentTimeMillis() + "++++++++++++++++++");
 	}

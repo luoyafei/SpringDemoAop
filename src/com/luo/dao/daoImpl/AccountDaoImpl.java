@@ -2,17 +2,14 @@ package com.luo.dao.daoImpl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.stereotype.Component;
 
 import com.luo.bean.User;
 import com.luo.dao.AccountDao;
 
-@Component(value="ad")
+//@Component(value="ad")
 public class AccountDaoImpl implements AccountDao {
 
 	private SqlSessionFactoryBean sqlSessionFactoryBean;
@@ -21,7 +18,7 @@ public class AccountDaoImpl implements AccountDao {
 		return sqlSessionFactoryBean;
 	}
 
-	@Resource(name="sqlSessionFactoryBean")
+	//@Resource(name="sqlSessionFactoryBean")
 	public void setSqlSessionFactoryBean(SqlSessionFactoryBean sqlSessionFactoryBean) {
 		this.sqlSessionFactoryBean = sqlSessionFactoryBean;
 	}
@@ -38,7 +35,7 @@ public class AccountDaoImpl implements AccountDao {
 		try {
 			SqlSessionFactory ssf = sqlSessionFactoryBean.getObject();
 			SqlSession session = ssf.openSession();
-			List<User> users = session.selectList("aUser.listAll");
+			List<User> users = session.selectList("com.luo.bean.User.allList");
 			System.out.println(users.size());
 		} catch (Exception e) {
 			e.printStackTrace();

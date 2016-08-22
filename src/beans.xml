@@ -19,16 +19,16 @@
      
      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	     <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	  	 <property name="url" value="jdbc:mysql://localhost:3306/springDemo" />
+	  	 <property name="url" value="jdbc:mysql://localhost:3306/springdemo" />
 	  	 <property name="username" value="root" />
 	  	 <property name="password" value="root" />
 	 </bean>
-<!--      <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource"/>
 	    <property name="annotatedClasses">
-	      <list>
-	        <value>com.luo.bean.User</value>
-	      </list>
+	    	<list>
+	            <value>com.luo.bean.User</value>
+	        </list>
 	    </property>
 	    <property name="hibernateProperties">
 		    <props>
@@ -37,20 +37,14 @@
 		        <prop key="format_sql">true</prop>
 		    </props>
 		</property>
-	  </bean> -->
-	  
-	  <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-	      <property name="configLocation" value="mybatisConfig.xml"/>
-	      <property name="dataSource" ref="dataSource"/>
-	  </bean>
+	</bean>
 	
-	
-<!-- 	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 	  <property name="sessionFactory" ref="sessionFactory" />
-	</bean> -->
+	</bean>
 	<!-- <tx:annotation-driven transaction-manager="txManager" /> -->
 	<!-- 使用xml事务 -->
-	<!-- <aop:config>
+	<aop:config>
 		<aop:pointcut id="businessService" expression="execution(public * com.luo.service..*.*(..))"/>
 		<aop:advisor pointcut-ref="businessService" advice-ref="tx-advice"/>
 	</aop:config>
@@ -59,7 +53,7 @@
 			<tx:method name="save" propagation="REQUIRED"/>
 			<tx:method name="getUser*" read-only="true"/>
 		</tx:attributes>
-	</tx:advice> -->
+	</tx:advice>
 		
 	
      <aop:config>
@@ -69,6 +63,13 @@
      	</aop:aspect>
      </aop:config>
      
+     <!-- 
+     使用mybatis的配置
+      <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	      <property name="configLocation" value="mybatisConfig.xml"/>
+	      <property name="dataSource" ref="dataSource"/>
+	  </bean>
+      -->
     <!--  <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
 </beans>
 
