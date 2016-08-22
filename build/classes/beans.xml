@@ -23,7 +23,7 @@
 	  	 <property name="username" value="root" />
 	  	 <property name="password" value="root" />
 	 </bean>
-     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+<!--      <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource"/>
 	    <property name="annotatedClasses">
 	      <list>
@@ -37,19 +37,38 @@
 		        <prop key="format_sql">true</prop>
 		    </props>
 		</property>
+	  </bean> -->
+	  
+	  <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	      <property name="configLocation" value="mybatisConfig.xml"/>
+	      <property name="dataSource" ref="dataSource"/>
 	  </bean>
 	
-	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	
+<!-- 	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 	  <property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<tx:annotation-driven transaction-manager="txManager"/>
-
+	</bean> -->
+	<!-- <tx:annotation-driven transaction-manager="txManager" /> -->
+	<!-- 使用xml事务 -->
+	<!-- <aop:config>
+		<aop:pointcut id="businessService" expression="execution(public * com.luo.service..*.*(..))"/>
+		<aop:advisor pointcut-ref="businessService" advice-ref="tx-advice"/>
+	</aop:config>
+	<tx:advice id="tx-advice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save" propagation="REQUIRED"/>
+			<tx:method name="getUser*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice> -->
+		
+	
      <aop:config>
      	<aop:pointcut expression="execution(public void com.luo.dao.daoImpl.UserDaoImpl.save(com.luo.bean.User))" id="pc"/>
      	<aop:aspect id="asp" ref="logInterceptor">
      		<aop:before pointcut-ref="pc" method="log" />
      	</aop:aspect>
      </aop:config>
+     
     <!--  <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
 </beans>
 

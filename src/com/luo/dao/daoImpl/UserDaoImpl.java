@@ -1,5 +1,7 @@
 package com.luo.dao.daoImpl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.HibernateException;
@@ -45,6 +47,16 @@ System.out.println(sessionFactory.isClosed());
 
 		throw new HibernateException("error");
 		//System.out.println("I am saved!");
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public void getUserAll() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from User u";
+		List<User> us = session.createQuery(hql).list();
+		System.out.println(us.size());
+		
 	}
 
 }
